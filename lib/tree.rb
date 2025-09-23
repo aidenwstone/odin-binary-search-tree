@@ -82,4 +82,11 @@ class Tree
     is_left = prev_node.left_child == curr_node
     is_left ? prev_node.left_child = nil : prev_node.right_child = nil
   end
+
+  def delete_single_child_node(prev_node, curr_node)
+    is_left = prev_node.left_child == curr_node
+    next_node = curr_node.left_child || curr_node.right_child
+
+    is_left ? prev_node.left_child = next_node : prev_node.right_child = next_node
+  end
 end
