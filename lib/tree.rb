@@ -16,7 +16,14 @@ class Tree
     pretty_print(node.left_child, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left_child
   end
 
-  def insert(value); end
+  def insert(value)
+    if @root.nil?
+      @root = Node.new(value)
+      return
+    end
+
+    insert_node(@root, value)
+  end
 
   def delete(value); end
 
