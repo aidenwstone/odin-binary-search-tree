@@ -50,4 +50,24 @@ class Tree
 
     Node.new(root_value, left_node, right_node)
   end
+
+  def insert_node(curr_node, value) # rubocop:disable Metrics/MethodLength
+    return if value == curr_node.value
+
+    if value < curr_node.value
+      if curr_node.left_child.nil?
+        curr_node.left_child = Node.new(value)
+        return
+      end
+
+      insert_node(curr_node.left_child, value)
+    else
+      if curr_node.right_child.nil?
+        curr_node.right_child = Node.new(value)
+        return
+      end
+
+      insert_node(curr_node.right_child, value)
+    end
+  end
 end
