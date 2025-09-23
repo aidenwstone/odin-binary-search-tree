@@ -77,4 +77,9 @@ class Tree
       insert_node(curr_node.right_child, value)
     end
   end
+
+  def delete_leaf_node(prev_node, curr_node)
+    is_left = prev_node.left_child == curr_node
+    is_left ? prev_node.left_child = nil : prev_node.right_child = nil
+  end
 end
