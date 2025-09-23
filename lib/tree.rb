@@ -89,4 +89,11 @@ class Tree
 
     is_left ? prev_node.left_child = next_node : prev_node.right_child = next_node
   end
+
+  def get_successor(node)
+    curr_node = node.right_child
+
+    curr_node = curr_node.left_child until curr_node.left_child.nil?
+    curr_node
+  end
 end
