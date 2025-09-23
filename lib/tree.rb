@@ -38,5 +38,16 @@ class Tree
 
   private
 
-  def build_tree(data); end
+  def build_tree(data)
+    return nil if data.empty?
+
+    cleaned_data = data.uniq.sort
+    mid_index = cleaned_data.length / 2
+    root_value = cleaned_data[mid_index]
+
+    left_node = build_tree(cleaned_data.take(mid_index))
+    right_node = build_tree(cleaned_data.drop(mid_index + 1))
+
+    Node.new(root_value, left_node, right_node)
+  end
 end
