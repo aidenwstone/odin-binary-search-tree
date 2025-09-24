@@ -96,4 +96,11 @@ class Tree
     curr_node = curr_node.left_child until curr_node.left_child.nil?
     curr_node
   end
+
+  def delete_multi_child_node(curr_node)
+    next_node = get_successor(curr_node)
+
+    delete(next_node.value)
+    curr_node.value = next_node.value
+  end
 end
