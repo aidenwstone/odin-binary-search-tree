@@ -25,7 +25,22 @@ class Tree
     insert_node(@root, value)
   end
 
-  def delete(value); end
+  def delete(value) # rubocop:disable Metrics/MethodLength
+    prev_node = nil
+    curr_node = @root
+    until value == curr_node.value
+      prev_node = curr_node
+      curr_node = value < curr_node.value ? curr_node.left_child : curr_node.right_child
+    end
+
+    if curr_node.left_child.nil? && curr_node.right_child.nil?
+      delete_leaf_node(prev_node, curr_node)
+    elsif curr_node.left_child && curr_node.right_child
+      delete_multi_child_node(curr_node)
+    else
+      delete_single_child_node(prev_node, curr_node)
+    end
+  end
 
   def find(value); end
 
