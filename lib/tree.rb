@@ -91,7 +91,15 @@ class Tree
     [curr_node.value] + left_values + right_values
   end
 
-  def postorder; end
+  def postorder(curr_node = @root, &block)
+    return [] if curr_node.nil?
+
+    left_values = postorder(curr_node.left_child, &block)
+    right_values = postorder(curr_node.right_child, &block)
+    yield curr_node if block_given?
+
+    left_values + right_values + [curr_node.value]
+  end
 
   def height(value); end
 
