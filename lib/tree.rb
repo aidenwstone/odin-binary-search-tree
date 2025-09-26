@@ -99,7 +99,12 @@ class Tree
     left_values + right_values + [curr_node.value]
   end
 
-  def height(value); end
+  def height(value)
+    node = find(value)
+    return nil if node.nil?
+
+    calculate_height(node)
+  end
 
   def depth(value)
     return nil if @root.nil?
