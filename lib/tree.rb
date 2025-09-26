@@ -101,7 +101,20 @@ class Tree
 
   def height(value); end
 
-  def depth(value); end
+  def depth(value)
+    return nil if @root.nil?
+
+    curr_node = @root
+    depth = 0
+    until curr_node.nil?
+      return depth if value == curr_node.value
+
+      curr_node = value < curr_node.value ? curr_node.left_child : curr_node.right_child
+      depth += 1
+    end
+
+    nil
+  end
 
   def balanced?; end
 
