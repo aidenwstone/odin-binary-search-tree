@@ -52,7 +52,24 @@ class Tree
     curr_node
   end
 
-  def level_order; end
+  def level_order # rubocop:disable Metrics/MethodLength
+    return [] if @root.nil?
+
+    nodes_to_visit = [@root]
+    found_values = []
+
+    until nodes_to_visit.empty?
+      curr_node = nodes_to_visit.shift
+
+      children = [curr_node.left_child, curr_node.right_child].compact
+      nodes_to_visit.push(*children)
+
+      found_values.push(curr_node.value)
+      yield curr_node if block_given?
+    end
+
+    found_values
+  end
 
   def inorder; end
 
