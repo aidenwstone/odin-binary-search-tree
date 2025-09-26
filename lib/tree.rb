@@ -44,9 +44,7 @@ class Tree
 
   def find(value)
     curr_node = @root
-    until value == curr_node.value
-      return if curr_node.left_child.nil? && curr_node.right_child.nil?
-
+    until curr_node.nil? || value == curr_node.value
       curr_node = value < curr_node.value ? curr_node.left_child : curr_node.right_child
     end
     curr_node
