@@ -178,4 +178,12 @@ class Tree
     delete(next_node.value)
     curr_node.value = next_node.value
   end
+
+  def calculate_height(node)
+    return -1 if node.nil?
+
+    left_height = calculate_height(node.left_child)
+    right_height = calculate_height(node.right_child)
+    1 + [left_height, right_height].max
+  end
 end
