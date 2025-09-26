@@ -71,7 +71,15 @@ class Tree
     found_values
   end
 
-  def inorder; end
+  def inorder(curr_node = @root, &block)
+    return [] if curr_node.nil?
+
+    left_values = inorder(curr_node.left_child, &block)
+    yield curr_node if block_given?
+    right_values = inorder(curr_node.right_child, &block)
+
+    left_values + [curr_node.value] + right_values
+  end
 
   def preorder; end
 
