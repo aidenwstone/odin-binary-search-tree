@@ -81,7 +81,15 @@ class Tree
     left_values + [curr_node.value] + right_values
   end
 
-  def preorder; end
+  def preorder(curr_node = @root, &block)
+    return [] if curr_node.nil?
+
+    yield curr_node if block_given?
+    left_values = preorder(curr_node.left_child, &block)
+    right_values = preorder(curr_node.right_child, &block)
+
+    [curr_node.value] + left_values + right_values
+  end
 
   def postorder; end
 
