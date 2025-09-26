@@ -5,7 +5,7 @@ require_relative 'node'
 # The Tree class manages a binary search tree.
 # It provides functionality to build a tree; insert, delete, and find nodes; rebalance when neccessary, etc.
 # This class is designed to be used with the Node class.
-class Tree
+class Tree # rubocop:disable Metrics/ClassLength
   def initialize(data)
     @root = build_tree(data)
   end
