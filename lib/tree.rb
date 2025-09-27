@@ -121,7 +121,9 @@ class Tree # rubocop:disable Metrics/ClassLength
     nil
   end
 
-  def balanced?; end
+  def balanced?
+    check_balance(@root) != -1
+  end
 
   private
 
