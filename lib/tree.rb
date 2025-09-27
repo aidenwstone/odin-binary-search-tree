@@ -25,10 +25,11 @@ class Tree # rubocop:disable Metrics/ClassLength
     insert_node(@root, value)
   end
 
-  def delete(value) # rubocop:disable Metrics/MethodLength
+  def delete(value)
     prev_node = nil
     curr_node = @root
-    until value == curr_node.value
+    until curr_node.nil?
+      delete_node(prev_node, curr_node) if value == curr_node.value
       prev_node = curr_node
       curr_node = value < curr_node.value ? curr_node.left_child : curr_node.right_child
     end
