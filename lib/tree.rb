@@ -191,4 +191,19 @@ class Tree # rubocop:disable Metrics/ClassLength
     right_height = calculate_height(node.right_child)
     1 + [left_height, right_height].max
   end
+
+  def check_balance(node)
+    return 0 if node.nil?
+
+    left_height = check_balance(node.left_child)
+    return -1 if left_height == -1
+
+    right_height = check_balance(node.right_child)
+    return -1 if right_height == -1
+
+    height_diff = (left_height - right_height).abs
+    return -1 if height_diff > 1
+
+    1 + [left_height, right_height].max
+  end
 end
