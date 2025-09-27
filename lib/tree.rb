@@ -125,6 +125,11 @@ class Tree # rubocop:disable Metrics/ClassLength
     check_balance(@root) != -1
   end
 
+  def rebalance
+    sorted_values = inorder
+    @root = build_tree(sorted_values)
+  end
+
   private
 
   def build_tree(data)
